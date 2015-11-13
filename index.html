@@ -191,96 +191,103 @@
 
     <section class="container-fluid">
         <div class="container-fluid col-md-8">
-            
+
             <style>
-                #game_rules a{
-                    font-size:30px;
+                /*#game_rules a {
+                    font-size: 30px;
                     color: #24374b
                 }
                 
-                #game_rules a:hover{
+                #game_rules a:hover {
                     color: #73d0da
-                }
+                }*/
                 
-                #game_rules{
-                    padding-left: 15%;
-                    margin-bottom:40px;
-                }
-                
-                #game_rules_content h3{
-                    color: #0942de;
-                }
-                
-                #game_rules_content ul{
+                #game_rules {
+                    margin-bottom: 50px;
                     padding-left: 10%
                 }
                 
+                #game_rules_content h3 {
+                    color: #0942de;
+                }
+                
+                #game_rules_content ul {
+                    padding-left: 10%
+                }
             </style>
-            
+
             <div class="container-fluid" id="game_rules">
-                
-                <a onclick="$('#game_rules_content').slideToggle()" href="#game_rules_content">
-                        Game Rules <i class="fa fa-chevron-circle-right"></i>
-                </a>
-                
-                <p>
-                    An introduction of the gameplay and the rules  
-                </p>
+                <div class="feature-icon">
+                    <i class="fa fa-rocket"></i>
+                </div>
+                <div class="feature-content">
+                    <h1 href="#game_rules_content">
+                        Game Rules 
+                    </h1>
 
-                <div class="container-fluid" id="game_rules_content" hidden="hidden">
-                    <h3>Basics</h3>
                     <p>
-                        The game objective is; clients acting as “tanks” accumulating points while making sure of their own survival. The tanks are capable of shooting shells (bullets) and these bullets will move 3 times faster than a tank. The environment is made out of four kinds of blocks
+                        An introduction of the gameplay and the rules
+                    </p>
+                    <a href="#game_rules" class="read-more-btn" onclick="$('#game_rules_content').slideToggle()">
+                            Read More 
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
 
+                    <div class="container-fluid" id="game_rules_content" hidden="hidden">
+                        <h3>Basics</h3>
+                        <p>
+                            The game objective is; clients acting as “tanks” accumulating points while making sure of their own survival. The tanks are capable of shooting shells (bullets) and these bullets will move 3 times faster than a tank. The environment is made out of four kinds of blocks
+
+                            <ul>
+                                <li>Brick wall</li>
+                                <li>Stone wall</li>
+                                <li>Water</li>
+                                <li>Blank cell</li>
+                            </ul>
+                        </p>
+
+                        <h3>Initialization</h3>
+                        <p>
+                            A timer is initiated when the first player registers for a game. When the 5th player joins the game or in the event of the timer expiring, the server will issue the game starting message to all the players that are already registered with the server. Any join request by a client hereafter until the end of the game instance will be rejected. The game will be played in a 20x20 grid
+                        </p>
+
+                        <h3>Moving and Shooting</h3>
+                        <p>
+                            A tank can move, rotate and shoot. If the request direction is the same as the current direction, the tank will be moved in the said direction. Otherwise the tank will be rotated to face the requested direction. There will be obstacles in the map, water and bricks.
+                        </p>
+
+                        <h3>Acquiring Coins</h3>
+                        <p>
+                            For two reasons coins will appear on the map.
+                        </p>
                         <ul>
-                            <li>Brick wall</li>
-                            <li>Stone wall</li>
-                            <li>Water</li>
-                            <li>Blank cell</li>
+                            <li>Random treasures</li>
+                            <li>Spoils of war</li>
                         </ul>
-                    </p>
 
-                    <h3>Initialization</h3>
-                    <p>
-                        A timer is initiated when the first player registers for a game. When the 5th player joins the game or in the event of the timer expiring, the server will issue the game starting message to all the players that are already registered with the server. Any join request by a client hereafter until the end of the game instance will be rejected. The game will be played in a 20x20 grid
-                    </p>
-
-                    <h3>Moving and Shooting</h3>
-                    <p>
-                        A tank can move, rotate and shoot. If the request direction is the same as the current direction, the tank will be moved in the said direction. Otherwise the tank will be rotated to face the requested direction. There will be obstacles in the map, water and bricks.
-                    </p>
-
-                    <h3>Acquiring Coins</h3>
-                    <p>
-                        For two reasons coins will appear on the map.
-                    </p>
-                    <ul>
-                        <li>Random treasures</li>
-                        <li>Spoils of war</li>
-                    </ul>
-
-                    <p>The players are supposed to collect them by moving to the cell where the coin pile is. When a player collects a pile of coins, his coin count and point count gets increased by that amount.
-                    </p>
+                        <p>The players are supposed to collect them by moving to the cell where the coin pile is. When a player collects a pile of coins, his coin count and point count gets increased by that amount.
+                        </p>
 
 
-                    <h3>Life Packs</h3>
-                    <p>
-                        Similar to the piles of coins, life packs will appear on empty cells. The method of taking a life pack is similar to the method of taking a treasure. When a client takes a life pack, 20% of the initial health will be added to their health. Note that it is possible for a client, at some point of the game, to have a health value which is greater than the initial health value.
-                    </p>
+                        <h3>Life Packs</h3>
+                        <p>
+                            Similar to the piles of coins, life packs will appear on empty cells. The method of taking a life pack is similar to the method of taking a treasure. When a client takes a life pack, 20% of the initial health will be added to their health. Note that it is possible for a client, at some point of the game, to have a health value which is greater than the initial health value.
+                        </p>
 
-                    <h3>Killing</h3>
-                    <p>
-                        A bullet hit will reduce the health of a tank by 10% of the initial health A player who has health of 0% (or less) will die and drop their coins at the point of death. But they will not lose the current points. However 25% of the points of the victim will be added to the killer. The dropped pile of coins is not different from a randomly created pile of coins. Thus the killer does not have a claim on it, it can be picked up by any remaining client.
-                    </p>
+                        <h3>Killing</h3>
+                        <p>
+                            A bullet hit will reduce the health of a tank by 10% of the initial health A player who has health of 0% (or less) will die and drop their coins at the point of death. But they will not lose the current points. However 25% of the points of the victim will be added to the killer. The dropped pile of coins is not different from a randomly created pile of coins. Thus the killer does not have a claim on it, it can be picked up by any remaining client.
+                        </p>
 
-                    <h3>Penalties and Death</h3>
-                    <p>
-                        If a client hits an obstacle (a standing brick wall or a stone wall), a fixed number of points will be deducted from the client. The deduction takes place per each turn, thus if a client keeps hitting an obstacle, it will continuously lose points.
-                    </p>
-                    <p>
-                        Clients can shoot over water. But if the client tries to move the tank in to a cell with water, the client will be killed. Since there is no killer here other than the environment, no body will be credited with points and the coins of the slain client will not be dropped on the ground. But dead clients get their coin count set to zero nevertheless.
-                    </p>
+                        <h3>Penalties and Death</h3>
+                        <p>
+                            If a client hits an obstacle (a standing brick wall or a stone wall), a fixed number of points will be deducted from the client. The deduction takes place per each turn, thus if a client keeps hitting an obstacle, it will continuously lose points.
+                        </p>
+                        <p>
+                            Clients can shoot over water. But if the client tries to move the tank in to a cell with water, the client will be killed. Since there is no killer here other than the environment, no body will be credited with points and the coins of the slain client will not be dropped on the ground. But dead clients get their coin count set to zero nevertheless.
+                        </p>
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -325,7 +332,7 @@
                                 <a href=""><img src="img/Using/logo4.png" alt="The Tankiya"></a>
                             </div>
                         </blockquote>
-                        <a href="#" class="download-btn">Download! <i class="fa fa-download"></i></a>
+                        <a href="#showcaseSlider" class="download-btn">Download! <i class="fa fa-download"></i></a>
                     </div>
                 </div>
             </div>
@@ -486,7 +493,7 @@
     </section>
 
     <section class="features-list" id="aboutus">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 ">
 
@@ -500,9 +507,10 @@
                                 Undergraduate at Department of Computer Science and Engineering, University of Moratuwa. Has experience in object oriented languages like C#, JAVA and web doveloping. Focuesd on web developing and intelligent algorithm development aspects in this project.
                             </p>
                             <p style="font-size:30px">
-                                <a href="#" style="margin-right:10px"><i class="fa fa-facebook"></i></a>
-                                <a href="#" style="margin-right:10px"><i class="fa fa-linkedin-square"></i></a>
-                                <a href="#" style="margin-right:10px"><i class="fa fa-twitter"></i></a>
+                                <a href="https://lk.linkedin.com/in/pasindukanchana" target="_blank"
+                                   style="margin-right:10px"><i class="fa fa-linkedin-square"></i></a>
+                                <a href="https://twitter.com/PasinduZee" target="_blank"
+                                   style="margin-right:10px"><i class="fa fa-twitter"></i></a>
                             </p>
                         </div>
                     </div>
@@ -517,10 +525,10 @@
                             </p>
 
                             <p style="font-size:30px">
-                                <a href="#" style="margin-right:10px"><i class="fa fa-facebook"></i></a>
-                                <a href="#" style="margin-right:10px">
+                                <a href="https://lk.linkedin.com/in/imeshasudasingha" style="margin-right:10px" target="_blank">
                                     <i class="fa fa-linkedin-square"></i></a>
-                                <a href="#" style="margin-right:10px"><i class="fa fa-twitter"></i></a>
+                                <a href="https://twitter.com/Imesha94" style="margin-right:10px" target="_blank">
+                                    <i class="fa fa-twitter"></i></a>
                             </p>
                         </div>
                     </div>
@@ -537,7 +545,7 @@
                     <h1 class="footer-logo">
 						<img src="img/Using/black.png" alt="Footer Logo Blue">
 						</h1>
-                    <p>Mustank 2016 - <a href="#">Licence</a> - Designed &amp; Developed by <a href="#">The Tankiya</a></p>
+                    <p>Mustank 2016 - <a href="#">Licence</a> - Designed &amp; Developed by <a href="#">Imesha Sudasingha and Pasindu Kanchana</a></p>
                 </div>
                 <div class="col-md-9">
                     <ul class="footer-nav">
@@ -553,8 +561,8 @@
     <div class="overlay overlay-boxify">
         <nav>
             <ul>
-                <li><a href="#about"><i class="fa fa-heart"></i>About</a></li>
-                <li><a href="#features"><i class="fa fa-flash"></i>Features</a></li>
+                <li><a href="#about"><i class="fa fa-heart"></i>Mustank 2016</a></li>
+                <li><a href="#features"><i class="fa fa-flash"></i>Technologies</a></li>
             </ul>
             <ul>
                 <li><a href="#screenshots"><i class="fa fa-desktop"></i>Screenshots</a></li>
